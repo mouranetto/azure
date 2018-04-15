@@ -8,6 +8,6 @@ localgw = 191.232.181.163 (IP publico configurado no vpngw do datacenter)
 conexão = 10.155.20.192/26 (Rede do lado do datacenter que deverá ser divulgada do lado do cliente)
 
 #datacenter
-vpngw = 191.235.84.200 (IP publico utilizado pelo GW, esse IP é gerado automáticamente na criação do GW)
-localgw = 191.232.181.163 (IP publico configurado no vpngw do datacenter)
-conexão = 10.155.20.192/26 (Rede do lado do datacenter que deverá ser divulgada do lado do cliente)
+vpngw = 191.232.181.163 (IP publico utilizado pelo GW, esse IP é gerado automáticamente na criação do GW)
+localgw = 191.235.84.200 (IP publico configurado no vpngw do cliente)
+conexão = 10.20.16.0/21 (Rede do lado do cliente que deverá ser divulgada do lado do datacenter)
