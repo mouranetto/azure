@@ -27,3 +27,10 @@
 
 #Comando para criar o Resource Group
   New-AzureRmResourceGroup -Name $RG -Location $Location
+  
+  $fesub = New-AzureRmVirtualNetworkSubnetConfig -Name $FESubName -AddressPrefix $FESubPrefix
+  $besub = New-AzureRmVirtualNetworkSubnetConfig -Name $BESubName -AddressPrefix $BESubPrefix
+  $gwsub = New-AzureRmVirtualNetworkSubnetConfig -Name $GWSubName -AddressPrefix $GWSubPrefix
+
+  New-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG -Location $Location -AddressPrefix $FEVnetPrefix,$BEVnetPrefix -Subnet $fesub,$besub,$gwsub -DnsServer $DNS
+  
