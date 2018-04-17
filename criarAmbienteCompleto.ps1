@@ -34,3 +34,7 @@
 
   New-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG -Location $Location -AddressPrefix $FEVnetPrefix,$BEVnetPrefix -Subnet $fesub,$besub,$gwsub -DnsServer $DNS
   
+  $vnet = Get-AzureRmVirtualNetwork -Name $VNetName -ResourceGroupName $RG
+  $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet
+  $pip = New-AzureRmPublicIpAddress -Name $GWIPName - ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
+  $ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPConfName -Subnet $subnet -PublicIpAddress $pip
