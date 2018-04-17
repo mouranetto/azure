@@ -38,3 +38,10 @@
   $subnet = Get-AzureRmVirtualNetworkSubnetConfig -Name "GatewaySubnet" -VirtualNetwork $vnet
   $pip = New-AzureRmPublicIpAddress -Name $GWIPName - ResourceGroupName $RG -Location $Location -AllocationMethod Dynamic
   $ipconf = New-AzureRmVirtualNetworkGatewayIpConfig -Name $GWIPConfName -Subnet $subnet -PublicIpAddress $pip
+  
+#Comando para criar um Network Security Group (NSG)
+
+#Comando para adicionar regras ao NSG
+
+#Comando para associar o NSG em uma Subnet
+
