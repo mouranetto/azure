@@ -53,3 +53,5 @@ conexão = 10.20.16.0/21 (Rede do lado do cliente que deverá ser divulgada do l
         net.ipv4.ip_forward = 1
         
 7. Reinicie o serviço: sudo service strongswan restart        
+
+Referência: https://www.parthbuch.com/blog/post/azure-aws-interconnect/
