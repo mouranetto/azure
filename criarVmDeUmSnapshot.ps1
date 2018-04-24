@@ -5,7 +5,7 @@
 	Get-AzureRmSubscription
 
 #Selecionar uma subscrição
-	Select-AzureRmSubscription -SubscriptionId "d9c54c59-ccfd-42fe-9be1-b4f65b51b809"
+	Select-AzureRmSubscription -SubscriptionId "b40efdad-97cd-43b7-a9ea-210da50f17b7"
 
 #Fornecer o nome do seu grupo de recursos
 	$resourceGroupName ='AZ-NETPDD-BRSOUTH'
@@ -25,12 +25,10 @@
 #Fornecer o tamanho da máquina virtual
 #e.g. Standard_DS3
 #Obtenha todos os tamanhos de vm em uma região usando o script abaixo:
-#e.g. Get-AzureRmVMSize -Location westus
-	$virtualMachineSize = 'Standard_DS3'
+#e.g. Get-AzureRmVMSize -Location brazilsouth
+	$virtualMachineSize = 'Standard_B1s'
 
 #Definir o contexto para o ID de assinatura em que o Disco gerenciado será criado
-	Select-AzureRmSubscription -SubscriptionId $SubscriptionId
-
 	$snapshot = Get-AzureRmSnapshot -ResourceGroupName $resourceGroupName -SnapshotName $snapshotName
  
 	$diskConfig = New-AzureRmDiskConfig -Location $snapshot.Location -SourceResourceId $snapshot.Id -CreateOption Copy
