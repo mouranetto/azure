@@ -17,10 +17,13 @@ conexão = 10.20.16.0/21 (Rede do lado do cliente que deverá ser divulgada do l
 #modelo (ipsec > aws to azure)
 
 1. configurar GW azure;
+
 2. Preparar um servidor Ubuntu 16.04 na AWS;
+
 3. Efetuar a instalação do Strongswan:
     sudo apt-get update
     sudo apt-get install strongswan
+
 4. Efetuar a alteração do arquivo /etc/ipsec.conf
     conn azure
       authby=secret
@@ -42,3 +45,11 @@ conexão = 10.20.16.0/21 (Rede do lado do cliente que deverá ser divulgada do l
            leftsubnet - A sub-rede local da VPC
            right - O endereço IP público do Gateway VNet do Azure
            rightsubnet - A sub-rede local da Rede Virtual do Azure (não deve ser confundida com a sub-rede do gateway)
+
+5. Agora precisamos configurar o StrongSwan com a chave secreta compartilhada. Modifique o arquivo em /etc/ipsec.secrets e adicione a linha:
+        IP LOCAL DA STRONGSWAN IP PÚBLICO DO AZATE VNET GATEWAY: PSK "SUA CHAVE COMPARTILHADA"           
+
+6. Para a instância de Strongswan encaminhar o tráfego entre o Azure VNet e o AWS VPC, teremos que habilitar o encaminhamento. Na instância do EC2, remova o comentário ou inclua a seguinte linha no arquivo /etc/sysctl.conf:
+        net.ipv4.ip_forward = 1
+        
+7. Reinicie o serviço: sudo service strongswan restart        
