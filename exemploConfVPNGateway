@@ -11,3 +11,34 @@ conexão = 10.155.20.192/26 (Rede do lado do datacenter que deverá ser divulgad
 vpngw = 191.232.181.163 (IP publico utilizado pelo GW, esse IP é gerado automáticamente na criação do GW)
 localgw = 191.235.84.200 (IP publico configurado no vpngw do cliente)
 conexão = 10.20.16.0/21 (Rede do lado do cliente que deverá ser divulgada do lado do datacenter)
+
+------------------------------------------------------------------------------------------------------------
+
+#modelo (ipsec > aws to azure)
+
+1. configurar GW azure;
+2. Preparar um servidor Ubuntu 16.04 na AWS;
+3. Efetuar a instalação do Strongswan:
+    sudo apt-get update
+    sudo apt-get install strongswan
+4. Efetuar a alteração do arquivo /etc/ipsec.conf
+    conn azure
+      authby=secret
+      type=tunnel
+      leftsendcert=never
+      left=[IP Address of this Server]
+      leftsubnet=172.30.0.0/16
+      right=[IP Address of Azure Gateway]
+      rightsubnet=172.40.0.0/24
+      keyexchange=ikev2
+      ikelifetime=10800s
+      keylife=57m
+      keyingtries=1
+      rekeymargin=3m
+      compress=no
+      auto=route
+      Onde:
+           left - O endereço IP local do servidor strongswan
+           leftsubnet - A sub-rede local da VPC
+           right - O endereço IP público do Gateway VNet do Azure
+           rightsubnet - A sub-rede local da Rede Virtual do Azure (não deve ser confundida com a sub-rede do gateway)
