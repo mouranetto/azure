@@ -10,3 +10,9 @@ AGENTES LOCAIS
 Failover planejado
 Failover não planejado
 Teste Failover
+
+Problemas conhecidos na migração AWS para AZURE
+- VM que irá receber o ASR precisa ser da família M
+- Tipo de virtualização das VMs na AWS precisa ser HVM. Tipo de virtualização PARAVIRTUAL não é suportado
+- Agente de mobilidade v2018 apresentou algumas falhas, v2017 funcionou normalmente
+- Necessário criar um usuário ADMIN LOCAL nos servidores com senha. Para usuário de domínio existe uma particularidade
