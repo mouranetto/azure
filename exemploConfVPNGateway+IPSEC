@@ -1,3 +1,7 @@
+#Problemas identificados
+1. É possível configurar uma VPNGW tipo Express Route junto com uma VPNGW tipo VPN, desde que, a subrede gateway seja /27 ou maior
+------------------------------------------------------------------------------------------------------------
+
 #Exemplo de como configurar um VPN Gateway
 
 #modelo (cliente > datacenter)
